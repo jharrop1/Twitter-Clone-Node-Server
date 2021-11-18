@@ -1,0 +1,17 @@
+[
+    {
+        "profileID": 1234567,
+        "name": "Jordan Harrop",
+        "tweets": 732,
+        "handle": "jharrop",
+        "profilePicture": "../../images/jordanplaceholder.png",
+        "bannerPicture": "../../images/banner.webp",
+        "bio": "Student, Software Engineer. Retweets and likes are not endorsements.",
+        "website": "youtube.com/webdevtv",
+        "location": "Boston, MA",
+        "dateOfBirth": "01/31/1993",
+        "dateJoined": "11/2020",
+        "followingCount": 476,
+        "followersCount": 246
+    }
+]
