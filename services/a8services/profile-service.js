@@ -1,4 +1,4 @@
-let profiles = require('../data/profile.json')
+let profiles = require('../../data/profile.json')
 
 module.exports = (app) => {
 
@@ -9,8 +9,8 @@ module.exports = (app) => {
     app.get('/api/profiles', findProfile);
 
     const updateProfile = (req, res) => {
-        const newProfile = req.body; // want to pass in a profile and a profileID, or access the ID from the profile
-        const newProfileID = newProfile.profile.profileID; //doesn't look like this is in the newProfile
+        const newProfile = req.body;
+        const newProfileID = newProfile.profile.profileID;
         profiles.map(profile => {
             if(profile.profileID === newProfileID) {
                 if(profile.bio !== newProfile.profile.bio && newProfile.profile.bio !== '') {
