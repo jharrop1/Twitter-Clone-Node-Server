@@ -30,5 +30,6 @@ require('./movies/service')(app);
 require('./services/a9services/movies-service')(app);
 require('./services/a9services/tweeter-service')(app);
 require('./services/a9services/profile-service')(app);
+require('./services/a9services/who-service')(app);
 
 app.listen(process.env.PORT || 4000);

@@ -1,34 +1,35 @@
-let profiles = require('../../data/profile.json')
+let dao = require('../../db/profile/profile-dao')
 
 module.exports = (app) => {
 
     const findProfile = (req, res) => {
-        res.json(profiles);
+        dao.findAllProfiles()
+            .then(profile => res.json(profile));
     }
 
     app.get('/api/profiles', findProfile);
 
     const updateProfile = (req, res) => {
         const newProfile = req.body;
-        const newProfileID = newProfile.profile.profileID;
-        profiles.map(profile => {
-            if(profile.profileID === newProfileID) {
-                if(profile.bio !== newProfile.profile.bio && newProfile.profile.bio !== '') {
-                    profile.bio = newProfile.profile.bio;
-                }
-                if(profile.name !== newProfile.profile.name && newProfile.profile.name !== '') {
-                    profile.name = newProfile.profile.name;
-                }
-                if(profile.location !== newProfile.profile.location && newProfile.profile.location !== '') {
-                    profile.location = newProfile.profile.location;
+        const oldProfile = dao.findProfileById(req.params.id)
 
+                if(oldProfile.bio !== newProfile.bio && newProfile.bio !== '') {
+                    oldProfile.bio = newProfile.bio;
                 }
-                if(profile.website !== newProfile.profile.website && newProfile.profile.website !== '') {
-                    profile.website = newProfile.profile.website;
+                if(oldProfile.name !== newProfile.name && newProfile.name !== '') {
+                    oldProfile.name = newProfile.name;
                 }
-            }
-        });
-        res.json(newProfile);
+                if(oldProfile.location !== newProfile.location && newProfile.location !== '') {
+                    oldProfile.location = newProfile.location;
+                }
+                if(oldProfile.website !== newProfile.website && newProfile.website !== '') {
+                    oldProfile.website = newProfile.website;
+                }
+        dao.updateProfile(req.params.id, {bio: oldProfile.bio,
+                                                    name: oldProfile.name,
+                                                    locaiton: oldProfile.location,
+                                                    website: oldProfile.website})
+            .then(status => res.send(status));
     }
     app.put('/api/profiles/:profileID', updateProfile);
 
