@@ -5,6 +5,9 @@ const findAllTweets = () => model.find().sort({createdAt: -1});
 const findTweetById = (id) =>
     model.findById(id);
 
+const findTweetByBio = (tweet) =>
+    model.findOne({tweet: tweet});
+
 const postNewTweet = (tweet) => model.create(tweet);
 
 
@@ -21,5 +24,5 @@ const likedStatus = (id) =>
 
 module.exports = {
     findAllTweets, postNewTweet,
-    deleteTweet, updateTweet, findTweetById, likedStatus
+    deleteTweet, updateTweet, findTweetById, likedStatus, findTweetByBio
 };

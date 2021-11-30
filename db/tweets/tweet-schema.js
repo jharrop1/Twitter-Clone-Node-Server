@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema({
+    _id: mongoose.Types.ObjectId,
     topic: String,
     posted: {type: Date, defaultValue: Date.now},
     userName: String,

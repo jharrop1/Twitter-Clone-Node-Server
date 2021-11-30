@@ -1,4 +1,6 @@
 const dao = require('../../db/tweets/tweet-dao')
+const mongoose = require('mongoose');
+
 
 module.exports = (app) => {
 
@@ -9,7 +11,9 @@ module.exports = (app) => {
     app.get('/api/a9tweets', findAllTweets);
 
     const postNewTweet = (req, res) => {
+        const id = new mongoose.Types.ObjectId();
         const newTweet = {
+            "_id": id,
             "topic": "Web Development",
             "userName": "ReactJS",
             "verified": false,
